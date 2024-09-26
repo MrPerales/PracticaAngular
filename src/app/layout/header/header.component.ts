@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCartShopping, faShop } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [FontAwesomeModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
+  constructor() {}
 
+  fashop = faShop;
+  faCartShopping = faCartShopping;
 }
