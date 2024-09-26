@@ -1,4 +1,4 @@
-import { ProductService } from ' @api/product.service';
+import { ProductService } from '@api/product.service';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';

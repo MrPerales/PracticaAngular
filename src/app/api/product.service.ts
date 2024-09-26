@@ -1,7 +1,7 @@
-import { environment } from ' @envs/environment.development';
+import { environment } from '@envs/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { Product } from 'app/shared/models/product.interface';
+import { Product } from '@shared/models/product.interface';
 import { tap } from 'rxjs';
 
 @Injectable({
