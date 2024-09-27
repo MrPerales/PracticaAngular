@@ -4,7 +4,8 @@
     class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden"
   >
     <img
-      class="lg:h-48 md:h-36 w-full object-cover object-top"
+      [routerLink]="['/products', product().id]"
+      class="lg:h-48 md:h-36 w-full object-cover object-top cursor-pointer"
       [src]="product().image"
       alt="blog"
     />
@@ -18,17 +19,20 @@
         {{ product().title | slice : 0 : 30 }}
       </h1>
 
-      <div class="flex items-center flex-wrap">
-        <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
+      <div class="flex justify-between items-center flex-wrap">
+        <a
+          [routerLink]="['/products', product().id]"
+          class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
+        >
           <span class="px-1"> Learn More </span>
           <fa-icon [icon]="faArrowRight"></fa-icon>
         </a>
-        <span
-          class="text-gray-400 gap-1 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-gray-200"
+        <button
+          (click)="AddToCart()"
+          class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
         >
-          <fa-icon [icon]="faEye"></fa-icon>
-          1.2K
-        </span>
+          <fa-icon [icon]="faCartShopping"></fa-icon>
+        </button>
       </div>
     </div>
   </div>
