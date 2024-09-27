@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CardComponent } from './card/card.component';
+import { ProductService } from '@api/product.service';
 
 @Component({
   selector: 'app-products',
@@ -8,4 +9,8 @@ import { CardComponent } from './card/card.component';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
-export default class ProductsComponent {}
+export default class ProductsComponent {
+  constructor(private productService: ProductService) {}
+
+  products = this.productService.products;
+}
