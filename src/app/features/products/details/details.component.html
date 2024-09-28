@@ -15,10 +15,20 @@
         </h1>
         <div class="flex mb-4">
           <span class="flex items-center">
+            @for (star of starArray; track index ; let index = $index ) {
+            @if(index +1 <= generateStarRate()){
+            <fa-icon class="text-yellow-500" [icon]="faStar"></fa-icon>
+
+            }@else if (index <= generateStarRate()) {
+            <fa-icon
+              class="text-yellow-500"
+              [icon]="faStarHalfStroke"
+            ></fa-icon>
+
+            }@else {
             <fa-icon [icon]="faStar"></fa-icon>
-            <fa-icon [icon]="faStar"></fa-icon>
-            <fa-icon [icon]="faStar"></fa-icon>
-            <fa-icon [icon]="faStar"></fa-icon>
+
+            } }
             <span class="text-gray-600 ml-3">
               {{ product()?.rating?.rate }}
             </span>
