@@ -37,4 +37,12 @@ export class ProductService {
       toSignal<Product>(this.http.get<Product>(`${this.apiUrl}/products/${id}`))
     );
   }
+
+  // nota : este metodo  es lo mismo que el de la linea 34 pero sin usar una señal
+  // si no subscribiendose en el archivo en el que es llamado
+  //  ejemplo en archivo details.component.ts solo descomenta el metodo de ese archivo
+  getProductId(id: string) {
+    const producto = this.http.get<Product>(`${this.apiUrl}/products/${id}`);
+    return producto;
+  }
 }

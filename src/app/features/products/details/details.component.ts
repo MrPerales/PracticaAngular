@@ -1,5 +1,5 @@
-import { CurrencyPipe } from '@angular/common';
-import { Component, input, OnInit, Signal } from '@angular/core';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+import { Component, Input, input, OnInit, signal, Signal } from '@angular/core';
 import { ProductService } from '@api/product.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -12,7 +12,7 @@ import { Product } from '@shared/models/product.interface';
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [FontAwesomeModule, CurrencyPipe],
+  imports: [FontAwesomeModule, CurrencyPipe, CommonModule],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',
 })
@@ -27,6 +27,9 @@ export default class DetailsComponent implements OnInit {
   product!: Signal<Product | undefined>;
   starArray: number[] = new Array(5).fill(0);
 
+  //descomentar si usas el metodo getProductId de este archivo
+  // productoId = signal<Product | undefined>(undefined);
+
   faStar = faStar;
   faHeart = faHeart;
   faStarHalfStroke = faStarHalfStroke;
@@ -36,7 +39,22 @@ export default class DetailsComponent implements OnInit {
     return Math.floor(rate);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.product = this.productService.getProductById(this.productId());
+    // this.getProductoId();
   }
+
+  // nota: descomenta el metodo  si vas a usar el metodo de getProductId de productService
+  // nota : este metodo hace lo mismo que la linea 42
+  // pero sin modificar el metodo del archivo productService
+  //   getProductoId() {
+  //     if (this.productId()) {
+  //       this.productService.getProductId(this.productId().toString()).subscribe({
+  //         next: (data) => {
+  //           this.productoId.set(data);
+  //         },
+  //         error: (error) => console.log(error),
+  //       });
+  //     }
+  //   }
 }
