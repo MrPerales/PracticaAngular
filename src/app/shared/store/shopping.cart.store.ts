@@ -41,7 +41,7 @@ export const CartStoreSignal = signalStore(
 );
 function calculateTotalAmount(products: Product[]): number {
   return products.reduce(
-    (accumulador, product) => accumulador + product.price,
+    (accumulador, product) => accumulador + product.price * product.qty,
     0
   );
 }
