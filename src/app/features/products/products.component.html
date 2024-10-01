@@ -3,7 +3,7 @@
     <div class="flex flex-wrap -m-4">
       @for (product of products(); track $index) {
 
-      <app-card [product]="product" />
+      <app-card (addToCartEvent)="addToCart($event)" [product]="product" />
       }
     </div>
   </div>

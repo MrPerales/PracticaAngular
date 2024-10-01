@@ -1,5 +1,13 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, Input, input, OnInit, signal, Signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  input,
+  OnInit,
+  signal,
+  Signal,
+} from '@angular/core';
 import { ProductService } from '@api/product.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -8,6 +16,7 @@ import {
   faStarHalfStroke,
 } from '@fortawesome/free-solid-svg-icons';
 import { Product } from '@shared/models/product.interface';
+import { CartStoreSignal } from '@shared/store/shopping.cart.store';
 
 @Component({
   selector: 'app-details',
@@ -29,6 +38,7 @@ export default class DetailsComponent implements OnInit {
 
   //descomentar si usas el metodo getProductId de este archivo
   // productoId = signal<Product | undefined>(undefined);
+  cartStoreSignal = inject(CartStoreSignal);
 
   faStar = faStar;
   faHeart = faHeart;
@@ -38,7 +48,9 @@ export default class DetailsComponent implements OnInit {
     const rate = this.product()?.rating.rate as number;
     return Math.floor(rate);
   }
-
+  addToCart() {
+    this.cartStoreSignal.addToCart(this.product() as Product);
+  }
   ngOnInit() {
     this.product = this.productService.getProductById(this.productId());
     // this.getProductoId();
