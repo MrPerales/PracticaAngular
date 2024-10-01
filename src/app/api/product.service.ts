@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { Product } from '@shared/models/product.interface';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -26,7 +26,13 @@ export class ProductService {
   getProducts() {
     return this.http
       .get<Product[]>(`${this.apiUrl}/products`)
-      .pipe(tap((data: Product[]) => this.products.set(data)))
+      .pipe(
+        map(
+          (product: Product[]) =>
+            product.map((product: Product) => ({ ...product, qty: 1 })) // agregamos la propiedad qty la cual NO viene de la api
+        ),
+        tap((data: Product[]) => this.products.set(data))
+      )
       .subscribe();
   }
 
