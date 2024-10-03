@@ -40,7 +40,11 @@ export class ProductService {
   getProductById(id: number) {
     // retorna una signal para poder usarla
     return runInInjectionContext(this.environmentInjector, () =>
-      toSignal<Product>(this.http.get<Product>(`${this.apiUrl}/products/${id}`))
+      toSignal<Product>(
+        this.http
+          .get<Product>(`${this.apiUrl}/products/${id}`)
+          .pipe(map((product: Product) => ({ ...product, qty: 1 })))
+      )
     );
   }
 
