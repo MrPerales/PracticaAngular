@@ -36,12 +36,15 @@
       >
         @for (product of cartStoreSignal.products(); track $index) {
         <div class="flex flex-col items-center justify-between gap-2">
-          <span>{{ product.qty }} - {{ product.title | slice : 0 : 10 }}</span>
+          <span
+            >{{ product.qty }} - {{ product.title | slice : 0 : 10 }} -
+            {{ product.subTotal || product.price | currency }}</span
+          >
         </div>
         }
         <hr class="my-4 border-gray-500 border-t-2" />
         <div class="flex justify-between font-light">
-          <span>Total : {{ cartStoreSignal.totalAmount() }}</span>
+          <span>Total : {{ cartStoreSignal.totalAmount() | currency }}</span>
         </div>
       </div>
       }
