@@ -26,7 +26,15 @@ export const CartStoreSignal = signalStore(
   // metodos para el cart
   withMethods(({ products, ...store }) => ({
     addToCart(product: Product) {
-      patchState(store, { products: [...products(), product] });
+      // ya se agrego ese producto
+      const isProductInCart = products().find((item) => item.id === product.id);
+      if (isProductInCart) {
+        isProductInCart.qty++;
+        isProductInCart.subTotal = isProductInCart.qty * isProductInCart.price;
+        patchState(store, { products: [...products()] });
+      } else {
+        patchState(store, { products: [...products(), product] });
+      }
     },
     removeFromCart(id: number) {
       const updatedProducts = products().filter((product) => product.id !== id);
