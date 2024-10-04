@@ -14,4 +14,8 @@ import { CartStoreSignal } from '@shared/store/shopping.cart.store';
 export default class CheckoutComponent {
   faCircleXMark = faCircleXmark;
   cartStore = inject(CartStoreSignal);
+
+  clearAll() {
+    this.cartStore.clearCart();
+  }
 }
