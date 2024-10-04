@@ -6,7 +6,10 @@
       >
         My Cart
       </h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">No. - items</p>
+      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+        {{ cartStore.productsCount() }} -
+        {{ cartStore.productsCount() > 1 ? "items" : "item" }}
+      </p>
     </div>
     <div class="lg:w-2/3 w-full mx-auto overflow-auto">
       <table class="table-auto w-full text-left whitespace-no-wrap">
@@ -33,20 +36,30 @@
           </tr>
         </thead>
         <tbody>
+          @for (product of cartStore.products(); track $index) {
+
           <tr>
-            <td class="px-4 py-3">Start</td>
-            <td class="px-4 py-3">5 Mb/s</td>
-            <td class="px-4 py-3 text-lg text-gray-900">Free</td>
+            <td class="px-4 py-3">{{ product.title }}</td>
+            <td class="px-4 py-3">{{ product.qty }}</td>
+            <td class="px-4 py-3 text-lg text-gray-900">
+              {{ product.price | currency }}
+            </td>
             <td class="w-10 text-center">
-              <input name="plan" type="radio" />
+              <button>
+                <fa-icon
+                  class="hover:text-red-500"
+                  [icon]="faCircleXMark"
+                ></fa-icon>
+              </button>
             </td>
           </tr>
+          }
         </tbody>
       </table>
     </div>
     <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
       <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
-        >Cart Subtotal
+        >Cart Total {{ cartStore.totalAmount() | currency }}
       </a>
       <button
         class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
