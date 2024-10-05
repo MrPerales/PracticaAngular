@@ -48,12 +48,30 @@
 
           <tr>
             <td class="px-4 py-3">{{ product.title }}</td>
-            <td class="px-4 py-3">{{ product.qty }}</td>
-            <td class="px-4 py-3 text-lg text-gray-900">
+            <td class="px-4 py-3">
+              <div class="flex justify-between items-center gap-">
+                <button
+                  [disabled]="product.qty === 1"
+                  (click)="minumItem(product.id)"
+                  class="flex ml-auto text-white bg-gray-400 border-0 p-2 focus:outline-none hover:bg-red-600 rounded"
+                >
+                  <fa-icon class="hover:text-white" [icon]="faMinus"></fa-icon>
+                </button>
+                {{ product.qty }}
+
+                <button
+                  (click)="plusItem(product.id)"
+                  class="flex ml-auto text-white bg-gray-400 border-0 p-2 focus:outline-none hover:bg-indigo-500 rounded"
+                >
+                  <fa-icon class="hover:text-white" [icon]="faPlus"></fa-icon>
+                </button>
+              </div>
+            </td>
+            <td class="px-4 py-3 text-lg text-gray-900 outline-red-700">
               {{ product.price | currency }}
             </td>
             <td class="w-10 text-center">
-              <button>
+              <button (click)="removeItem(product.id)">
                 <fa-icon
                   class="hover:text-red-500"
                   [icon]="faCircleXMark"

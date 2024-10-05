@@ -36,6 +36,13 @@ export const CartStoreSignal = signalStore(
         patchState(store, { products: [...products(), product] });
       }
     },
+    updateQuantityProduct(id: number, count: number) {
+      const product = products().find((item) => item.id === id);
+      if (product) {
+        product.qty = product.qty + count;
+        patchState(store, { products: [...products()] });
+      }
+    },
     removeFromCart(id: number) {
       const updatedProducts = products().filter((product) => product.id !== id);
       patchState(store, { products: updatedProducts });
