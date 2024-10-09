@@ -32,19 +32,18 @@
       @if (showCart() && cartStoreSignal.productsCount() !== 0) {
       <div
         [ngClass]="{ 'show-cart-animation': showCart() }"
-        class="absolute right-0 z-10 w-48 p-2 text-white rounded-sm bg-gray-400"
+        class="lg:w-96 flex flex-col gap-3 absolute right-0 z-10 bg-gray-500 p-3 rounded-lg text-white w-80"
       >
         @for (product of cartStoreSignal.products(); track $index) {
-        <div class="flex flex-col items-center justify-between gap-2">
-          <span
-            >{{ product.qty }} - {{ product.title | slice : 0 : 10 }} -
-            {{ product.subTotal || product.price | currency }}</span
-          >
-        </div>
+
+        <app-cart [product]="product"></app-cart>
+
         }
-        <hr class="my-4 border-gray-500 border-t-2" />
-        <div class="flex justify-between font-light">
-          <span>Total : {{ cartStoreSignal.totalAmount() | currency }}</span>
+
+        <hr class="my-4 border-white border-t-2" />
+        <div class="flex justify-between items-center font-bold">
+          <span>Total : </span>
+          <span>{{ cartStoreSignal.totalAmount() | currency }}</span>
         </div>
       </div>
       }
