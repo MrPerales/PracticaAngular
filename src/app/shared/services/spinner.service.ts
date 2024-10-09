@@ -8,9 +8,9 @@ export class SpinnerService {
   isLoading = signal<boolean>(false);
 
   hide() {
-    this.isLoading.set(true);
+    this.isLoading.set(false);
   }
   show() {
-    this.isLoading.set(false);
+    this.isLoading.set(true);
   }
 }

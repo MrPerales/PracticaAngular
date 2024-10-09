@@ -10,5 +10,5 @@ import { SpinnerService } from '@shared/services/spinner.service';
 })
 export class SpinnerComponent {
   constructor(private spinerService: SpinnerService) {}
-  isLoadin = this.spinerService.isLoading;
+  isLoading = this.spinerService.isLoading;
 }
