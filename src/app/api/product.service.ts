@@ -18,22 +18,19 @@ export class ProductService {
     private http: HttpClient,
     private environmentInjector: EnvironmentInjector
   ) {
-    this.getProducts();
+    // this.init();
   }
   apiUrl = environment.API_URL;
   products = signal<Product[]>([]);
 
   getProducts() {
-    return this.http
-      .get<Product[]>(`${this.apiUrl}/products`)
-      .pipe(
-        map(
-          (product: Product[]) =>
-            product.map((product: Product) => ({ ...product, qty: 1 })) // agregamos la propiedad qty la cual NO viene de la api
-        ),
-        tap((data: Product[]) => this.products.set(data))
-      )
-      .subscribe();
+    return this.http.get<Product[]>(`${this.apiUrl}/products`).pipe(
+      map(
+        (product: Product[]) =>
+          product.map((product: Product) => ({ ...product, qty: 1 })) // agregamos la propiedad qty la cual NO viene de la api
+      ),
+      tap((data: Product[]) => this.products.set(data))
+    );
   }
 
   // nota : toSignal es para comvertir un observable a una signal

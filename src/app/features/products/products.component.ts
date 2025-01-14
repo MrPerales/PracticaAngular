@@ -15,7 +15,16 @@ export default class ProductsComponent {
   constructor(private productService: ProductService) {}
   cartStoreSiganl = inject(CartStoreSignal);
 
-  products = this.productService.products;
+  // products = this.productService.products;
+  products: Product[] = [];
+
+  ngOnInit() {
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+    });
+  }
 
   addToCart(product: Product) {
     this.cartStoreSiganl.addToCart(product);
