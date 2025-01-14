@@ -8,6 +8,12 @@ export function generateOneProduct(): Product {
     category: faker.commerce.department(),
     description: faker.commerce.productDescription(),
     image: faker.image.url(),
+    qty: faker.number.int({ min: 1 }),
+    subTotal: 0,
+    rating: {
+      rate: faker.number.int({ min: 1 }),
+      count: faker.number.int({ min: 1 }),
+    },
   };
 }
 
