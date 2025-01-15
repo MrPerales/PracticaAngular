@@ -4,7 +4,10 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { ProductService } from './product.service';
-import { generateManyProducts } from '@shared/models/products.mock';
+import {
+  generateManyProducts,
+  generateOneProduct,
+} from '@shared/models/products.mock';
 import { environment } from '@envs/environment.development';
 import { Product } from '@shared/models/product.interface';
 
@@ -48,6 +51,22 @@ fdescribe('ProductService', () => {
       // expect(products).toEqual(mockData);
       // http config
       const url = `${environment.API_URL}/products`;
+      const req = httpController.expectOne(url);
+      req.flush(mockData);
+    });
+  });
+  describe('test for getProductId', () => {
+    it('should return a product by Id', (doneFn) => {
+      const mockData = generateOneProduct();
+      const productId = '1';
+      service.getProductId(productId).subscribe({
+        next: (data) => {
+          expect(data).toEqual(mockData);
+          doneFn();
+        },
+      });
+      // http config
+      const url = `${environment.API_URL}/products/${productId}`;
       const req = httpController.expectOne(url);
       req.flush(mockData);
     });
