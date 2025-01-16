@@ -1,3 +1,4 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -16,4 +17,10 @@ export function queryById<T>(fixture: ComponentFixture<T>, testId: string) {
 
 export function queryAll<T>(fixture: ComponentFixture<T>, selector: string) {
   return fixture.debugElement.queryAll(By.css(selector));
+}
+
+export function getText<T>(fixture: ComponentFixture<T>, testId: string) {
+  const debugElement: DebugElement = queryById(fixture, testId);
+  const element: HTMLElement = debugElement.nativeElement;
+  return element.textContent;
 }
