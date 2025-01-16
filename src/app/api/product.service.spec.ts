@@ -11,7 +11,7 @@ import {
 import { environment } from '@envs/environment.development';
 import { Product } from '@shared/models/product.interface';
 
-fdescribe('ProductService', () => {
+describe('ProductService', () => {
   let service: ProductService;
   let httpController: HttpTestingController;
 
