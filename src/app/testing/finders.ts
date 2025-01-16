@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 export function query<T>(fixture: ComponentFixture<T>, selector: string) {
   const debugElement = fixture.debugElement.query(By.css(selector));
   if (!debugElement) {
-    return new Error(`query: element with ${selector} not found`);
+    throw new Error(`query: element with ${selector} not found`);
   }
   return debugElement;
 }
