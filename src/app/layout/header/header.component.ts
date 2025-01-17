@@ -15,7 +15,6 @@ import { CartStoreSignal } from '@shared/store/shopping.cart.store';
     RouterLink,
     NgClass,
     CurrencyPipe,
-    SlicePipe,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',

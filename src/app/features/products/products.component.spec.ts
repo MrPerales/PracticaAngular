@@ -9,7 +9,7 @@ import { Component, inject } from '@angular/core';
 import { Product } from '@shared/models/product.interface';
 import { queryById } from 'app/testing';
 
-fdescribe('ProductsComponent', () => {
+describe('ProductsComponent', () => {
   let productsComponent: ProductsComponent;
   let fixture: ComponentFixture<ProductsComponent>;
   let productService: jasmine.SpyObj<ProductService>;
