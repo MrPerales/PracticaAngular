@@ -47,14 +47,20 @@ export const CartStoreSignal = signalStore(
         if (product) {
           product.qty = product.qty + count;
           patchState(store, { products: [...products()] });
+        } else {
+          toastrService.error(`element with ${id} not found`, 'Error');
         }
       },
       removeFromCart(id: number) {
         const updatedProducts = products().filter(
           (product) => product.id !== id
         );
-        patchState(store, { products: updatedProducts });
-        toastrService.info('Product removed', 'Store');
+        if (updatedProducts) {
+          patchState(store, { products: updatedProducts });
+          toastrService.info('Product removed', 'Store');
+        } else {
+          toastrService.error(`element with ${id} not found`, 'Error');
+        }
       },
       clearCart() {
         // para no manipular el store usamos patchState

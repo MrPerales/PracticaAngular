@@ -10,6 +10,7 @@ fdescribe('Test for CartStoreSignal', () => {
     const toastrServiceSpy = jasmine.createSpyObj('ToastrService', [
       'success',
       'info',
+      'error',
     ]);
     await TestBed.configureTestingModule({
       imports: [],
@@ -52,6 +53,27 @@ fdescribe('Test for CartStoreSignal', () => {
 
     const productQty = store.products()[0].qty; // 6 ya que le agregamos 5 mas
     expect(productQty).toBe(6);
+  });
+  it('should return message error when id is not found', () => {
+    const id = 1;
+    const idFound = 2;
+    const qty = 1;
+    const newQty = 5;
+
+    const productMock = { ...generateOneProduct(), id, qty };
+
+    store.addToCart(productMock);
+    //when updateQuantityProduct id not found
+    store.updateQuantityProduct(idFound, newQty);
+    // when removeFromCart id not found
+    store.removeFromCart(idFound);
+
+    expect(toastrService.error)
+      .withContext('updateQuantityProduct')
+      .toHaveBeenCalledWith(`element with ${idFound} not found`, 'Error');
+    expect(toastrService.error)
+      .withContext('removeFromCart')
+      .toHaveBeenCalledWith(`element with ${idFound} not found`, 'Error');
   });
 
   // remove
