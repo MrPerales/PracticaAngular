@@ -6,21 +6,29 @@
   </div>
   <div class="w-3/4">
     <div class="flex flex-col">
-      <h2 class="font-bold text-xl">{{ product().title | slice : 0 : 10 }}</h2>
+      <h2 data-testid="product-title" class="font-bold text-xl">
+        {{ product().title | slice : 0 : 10 }}
+      </h2>
       <span class="font-light text-sm">{{ product().category }}</span>
     </div>
     <div class="flex justify-between items-center">
-      <span class="w-1/4 font-semibold"> {{ product().price | currency }}</span>
+      <span data-testid="product-price" class="w-1/4 font-semibold">
+        {{ product().price | currency }}</span
+      >
       <div class="flex justify-around items-center w-2/4">
         <button
+          data-testid="btn-minum"
           [disabled]="product().qty === 1"
           (click)="minumItem(product().id)"
           class="flex text-white bg-gray-400 border-0 p-2 focus:outline-none hover:bg-red-600 rounded"
         >
           <fa-icon class="hover:text-white" [icon]="faMinus"></fa-icon>
         </button>
-        {{ product().qty }}
+        <span data-testid="product-qty">
+          {{ product().qty }}
+        </span>
         <button
+          data-testid="btn-plus"
           (click)="plusItem(product().id)"
           class="flex text-white bg-gray-400 border-0 p-2 focus:outline-none hover:bg-indigo-500 rounded"
         >
