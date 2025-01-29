@@ -2,11 +2,15 @@
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
       <h1
+        data-testid="checkout-title"
         class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900"
       >
         My Cart
       </h1>
-      <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+      <p
+        data-testid="items-count"
+        class="lg:w-2/3 mx-auto leading-relaxed text-base"
+      >
         {{ cartStore.productsCount() }} -
         {{ cartStore.productsCount() > 1 ? "items" : "item" }}
       </p>
@@ -14,15 +18,16 @@
     <div class="lg:w-2/3 w-full mx-auto overflow-auto">
       <div class="mb-2">
         <button
+          data-testid="btn-clear-all"
           (click)="clearAll()"
           class="flex ml-auto text-white bg-gray-400 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
         >
-          Clear All
+          <span> Clear All </span>
         </button>
       </div>
       <table class="table-auto w-full text-left whitespace-no-wrap">
         <thead>
-          <tr>
+          <tr data-testid="tr-header">
             <th
               class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl"
             >
@@ -47,19 +52,26 @@
           @for (product of cartStore.products(); track $index) {
 
           <tr>
-            <td class="px-4 py-3">{{ product.title }}</td>
+            <td class="px-4 py-3">
+              <span data-testid="product-title">
+                {{ product.title }}
+              </span>
+            </td>
             <td class="px-4 py-3">
               <div class="flex justify-between items-center gap-">
                 <button
+                  data-testid="btn-minum-item"
                   [disabled]="product.qty === 1"
                   (click)="minumItem(product.id)"
                   class="flex ml-auto text-white bg-gray-400 border-0 p-2 focus:outline-none hover:bg-red-600 rounded"
                 >
                   <fa-icon class="hover:text-white" [icon]="faMinus"></fa-icon>
                 </button>
+
                 {{ product.qty }}
 
                 <button
+                  data-testid="btn-plus-item"
                   (click)="plusItem(product.id)"
                   class="flex ml-auto text-white bg-gray-400 border-0 p-2 focus:outline-none hover:bg-indigo-500 rounded"
                 >
@@ -71,7 +83,10 @@
               {{ product.price | currency }}
             </td>
             <td class="w-10 text-center">
-              <button (click)="removeItem(product.id)">
+              <button
+                data-testid="btn-remove-item"
+                (click)="removeItem(product.id)"
+              >
                 <fa-icon
                   class="hover:text-red-500"
                   [icon]="faCircleXMark"
