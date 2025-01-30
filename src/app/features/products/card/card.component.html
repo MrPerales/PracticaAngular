@@ -11,11 +11,15 @@
     />
     <div class="p-6">
       <h2
+        data-testid="category"
         class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"
       >
         {{ product().category }}
       </h2>
-      <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
+      <h1
+        data-testid="product-title-card"
+        class="title-font text-lg font-medium text-gray-900 mb-3"
+      >
         {{ product().title | slice : 0 : 30 }}
       </h1>
 
@@ -24,10 +28,11 @@
           [routerLink]="['/products', product().id]"
           class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
         >
-          <span class="px-1"> Learn More </span>
+          <span data-testid="learn-more" class="px-1"> Learn More </span>
           <fa-icon [icon]="faArrowRight"></fa-icon>
         </a>
         <button
+          data-testid="bnt-add-to-cart"
           (click)="AddToCart()"
           class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
         >
