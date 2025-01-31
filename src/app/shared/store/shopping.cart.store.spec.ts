@@ -3,7 +3,7 @@ import { CartStoreSignal } from './shopping.cart.store';
 import { generateOneProduct } from '@shared/models/products.mock';
 import { ToastrService } from 'ngx-toastr';
 
-fdescribe('Test for CartStoreSignal', () => {
+describe('Test for CartStoreSignal', () => {
   let store: any;
   let toastrService: jasmine.SpyObj<ToastrService>;
   beforeEach(async () => {

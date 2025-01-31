@@ -30,7 +30,7 @@ class HostComponent {
   // product = { ...generateOneProduct(), price: 10, title: 'product 1' };
 }
 
-fdescribe('Test for CardComponent from HostComponent', () => {
+describe('Test for CardComponent from HostComponent', () => {
   let component: HostComponent;
   let fixture: ComponentFixture<HostComponent>;
   let cardComponent: CardComponent;

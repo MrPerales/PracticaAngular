@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { getText } from 'app/testing';
 import { By } from '@angular/platform-browser';
 
-fdescribe('Test for notFoundComponent', () => {
+describe('Test for notFoundComponent', () => {
   let component: NotFoundComponent;
   let fixture: ComponentFixture<NotFoundComponent>;
   beforeEach(async () => {

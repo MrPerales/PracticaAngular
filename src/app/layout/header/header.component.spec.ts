@@ -13,7 +13,7 @@ import { By } from '@angular/platform-browser';
 })
 export class CartComponentMock {}
 
-fdescribe('HeaderComponent', () => {
+describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   // let cartStoreSignalSpy = TestBed.inject(CartStoreSignal);

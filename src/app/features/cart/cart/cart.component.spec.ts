@@ -19,7 +19,7 @@ class HostComponent {
   product = { ...generateOneProduct(), price: 10, title: 'product 1' }; //es lo mismo de arriba para el test
 }
 
-fdescribe('Test for CartComponent ', () => {
+describe('Test for CartComponent ', () => {
   let component: HostComponent;
   let fixture: ComponentFixture<HostComponent>;
   let cartComponent: CartComponent;

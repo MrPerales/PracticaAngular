@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { clickElement, getText } from 'app/testing';
 import { generateOneProduct } from '@shared/models/products.mock';
 
-fdescribe('Test for Checkout Component ', () => {
+describe('Test for Checkout Component ', () => {
   let component: CheckoutComponent;
   let fixture: ComponentFixture<CheckoutComponent>;
   let store: any;
