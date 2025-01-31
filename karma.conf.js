@@ -28,6 +28,14 @@ module.exports = function (config) {
       dir: require("path").join(__dirname, "./coverage/store-angular17"),
       subdir: ".",
       reporters: [{ type: "html" }, { type: "text-summary" }],
+      check: {
+        global: {
+          statements: 60,
+          branches: 40,
+          functions: 60,
+          lines: 60,
+        },
+      },
     },
     reporters: ["mocha"],
     browsers: ["ChromeHeadless"],
